@@ -15,8 +15,7 @@ class Tag extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'label',
-        'user_id',
+        'name','user_id',
     ];
 
     public $timestamps = false;

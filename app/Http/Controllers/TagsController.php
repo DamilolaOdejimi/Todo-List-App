@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use App\Models\Tasks;
+use App\Models\Task;
 use App\Utils\Responder;
 use Illuminate\Http\Request;
 use App\Interfaces\StatusCodes;
@@ -23,7 +23,7 @@ class TagsController extends Controller
      */
     public function list()
     {
-        $tags = Tasks::where('user_id', $this->user->id)->get();
+        $tags = Tag::where('user_id', $this->user->id)->get();
         return Responder::send(StatusCodes::OK, $tags, 'Tasks retrieved successfully');
     }
 
@@ -33,7 +33,7 @@ class TagsController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'label' => ['required', 'string'],
+            'name' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -41,8 +41,8 @@ class TagsController extends Controller
         }
 
         $task = Tag::create([
-            'label' => $request->label,
-            'user_id' => $request->user_id
+            'name' => $request->name,
+            'user_id' => $this->user->id
         ]);
 
 
@@ -50,8 +50,8 @@ class TagsController extends Controller
         logAction([
             'log_name' => 'A task was created',
             'description' => 'A new Todo list task was created by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $task->id,
-            'request_model' => Tasks::class,
+            'resource_id' => $task->id,
+            'resource_model' => Tag::class,
             'user_id' => $this->user->id,
         ]);
 
@@ -73,16 +73,14 @@ class TagsController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $tags = Tag::whereIn('id', $request->ids)->get();
-        $tagNames = $tags->pluck('name')->toArray();
-        $tags->delete();
+        Tag::whereIn('id', $request->ids)->delete();
 
         // Audit
         logAction([
             'log_name' => 'Tags deleted',
-            'description' => 'Tags ('. implode(', ', $tagNames->pluck('name')->toArray()) .') deleted by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => null,
-            'request_model' => Tasks::class,
+            'description' => 'Tags deleted by ' . $this->user->first_name . " " . $this->user->last_name,
+            'resource_id' => null,
+            'resource_model' => Tag::class,
             'user_id' => $this->user->id,
         ]);
         return Responder::send(StatusCodes::DELETED, [], 'Tag(s) deleted successfully');

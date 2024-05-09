@@ -86,8 +86,8 @@ class TodoListController extends Controller
         logAction([
             'log_name' => 'Todo list created',
             'description' => 'A new Todo list created by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $todoList->id,
-            'request_model' => TodoList::class,
+            'resource_id' => $todoList->id,
+            'resource_model' => TodoList::class,
             'user_id' => $this->user->id,
         ]);
 
@@ -119,8 +119,8 @@ class TodoListController extends Controller
         logAction([
             'log_name' => 'Todo list updated',
             'description' => 'A new Todo list was updated by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $todoList->id,
-            'request_model' => TodoList::class,
+            'resource_id' => $todoList->id,
+            'resource_model' => TodoList::class,
             'user_id' => $this->user->id,
         ]);
         return Responder::send(StatusCodes::UPDATED, $todoList, 'Todo list created successfully');
@@ -145,8 +145,8 @@ class TodoListController extends Controller
         logAction([
             'log_name' => 'Todo list deleted',
             'description' => 'Todo lists deleted by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => null,
-            'request_model' => TodoList::class,
+            'resource_id' => null,
+            'resource_model' => TodoList::class,
             'user_id' => $this->user->id,
         ]);
         return Responder::send(StatusCodes::DELETED, [], 'Todo list(s) deleted successfully');

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PriorityLevelStatus;
-use App\Models\Tasks;
+use App\Models\Task;
 use App\Models\TodoList;
 use App\Utils\Responder;
 use App\Enums\TaskStatuses;
@@ -36,7 +36,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $tasks = Tasks::where('list_id', $listId)->get();
+        $tasks = Task::where('list_id', $listId)->get();
         return Responder::send(StatusCodes::OK, $tasks, 'Tasks retrieved successfully');
     }
 
@@ -53,7 +53,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $task = Tasks::find($taskId);
+        $task = Task::find($taskId);
         if($task->todoList->user->id != $this->user){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Unable to find task');
         }
@@ -79,7 +79,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $task = Tasks::create([
+        $task = Task::create([
             'name' => $request->name,
             'description' => $request->description,
             'list_id' => $request->list_id,
@@ -92,8 +92,8 @@ class TasksController extends Controller
         logAction([
             'log_name' => 'A task was created',
             'description' => 'A new Todo list task was created by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $task->id,
-            'request_model' => Tasks::class,
+            'resource_id' => $task->id,
+            'resource_model' => Task::class,
             'user_id' => $this->user->id,
         ]);
 
@@ -117,7 +117,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $task = Tasks::find($taskId);
+        $task = Task::find($taskId);
         if($task->todoList->user->id != $this->user){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
@@ -133,8 +133,8 @@ class TasksController extends Controller
         logAction([
             'log_name' => 'A task was updated',
             'description' => 'A new Todo list task was updated by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $task->id,
-            'request_model' => Tasks::class,
+            'resource_id' => $task->id,
+            'resource_model' => Task::class,
             'user_id' => $this->user->id,
         ]);
 
@@ -154,7 +154,7 @@ class TasksController extends Controller
                 'required',
                 'array',
                 function(string $attribute, mixed $value, Closure $fail) use ($listId){
-                    $tasks = Tasks::whereIn('id', $value)->get();
+                    $tasks = Task::whereIn('id', $value)->get();
                     if(count($value) > $tasks->count() || $tasks->where('list_id', '!=', $listId)->isNotEmpty()){
                         $fail("Invalid task(s) has/have been selected.");
                     }
@@ -166,14 +166,14 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        Tasks::whereIn('id', $request->ids)->delete();
+        Task::whereIn('id', $request->ids)->delete();
 
         // Audit
         logAction([
             'log_name' => 'Todo list tasks deleted',
             'description' => 'Todo list tasks deleted by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => null,
-            'request_model' => Tasks::class,
+            'resource_id' => null,
+            'resource_model' => Task::class,
             'user_id' => $this->user->id,
         ]);
         return Responder::send(StatusCodes::DELETED, [], 'Todo list task(s) deleted successfully');
@@ -193,7 +193,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $task = Tasks::find($taskId);
+        $task = Task::find($taskId);
         if($task->todoList->user->id != $this->user){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
@@ -206,8 +206,8 @@ class TasksController extends Controller
         logAction([
             'log_name' => 'The status of a task was updated',
             'description' => 'Task status was updated by ' . $this->user->first_name . " " . $this->user->last_name,
-            'request_id' => $task->id,
-            'request_model' => Tasks::class,
+            'resource_id' => $task->id,
+            'resource_model' => Task::class,
             'user_id' => $this->user->id,
         ]);
 
