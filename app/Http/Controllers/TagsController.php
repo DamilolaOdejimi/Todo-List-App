@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Utils\Responder;
 use Illuminate\Http\Request;
 use App\Interfaces\StatusCodes;
+use App\Models\TodoList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -71,6 +72,12 @@ class TagsController extends Controller
 
         if ($validator->fails()) {
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
+        }
+
+        $tags = Tag::whereIn('id', $request->ids)->doesntHave(TodoList::class)->get();
+        if($tags->count() < count($request->ids))
+        {
+            return Responder::send(StatusCodes::BAD_REQUEST, $validator->errors(), 'Some tags are still in use');
         }
 
         Tag::whereIn('id', $request->ids)->delete();

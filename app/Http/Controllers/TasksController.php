@@ -118,7 +118,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $task = Task::find($taskId);
+        $task = Task::with('todoList')->find($taskId);
         if($task->todoList->user->id != $this->user->id){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
@@ -185,8 +185,9 @@ class TasksController extends Controller
      */
     public function updateTaskStatus(Request $request, int $taskId)
     {
-        $validator = Validator::make(['task_id' => $taskId], [
-            'task_id' => ['required', 'integer', 'exists:tasks'],
+        $validator = Validator::make(
+            array_merge(['task_id' => $taskId], $request->all()), [
+            'task_id' => ['required', 'integer', 'exists:tasks,id'],
             'status' => ['required', 'string', Rule::in(TaskStatuses::cases())]
         ]);
 
@@ -212,7 +213,7 @@ class TasksController extends Controller
             'user_id' => $this->user->id,
         ]);
 
-        return Responder::send(StatusCodes::UPDATED, $task, 'Todo list task status updated successfully');
+        return Responder::send(StatusCodes::UPDATED, [], 'Task status updated successfully');
     }
 
     /**

@@ -13,6 +13,7 @@ use App\Rules\ValidateUserAsset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tag;
+use App\Models\Task;
 
 class TodoListController extends Controller
 {
@@ -41,9 +42,9 @@ class TodoListController extends Controller
     /**
      * Get a single record of the resource.
      */
-    public function get(Request $request)
+    public function get(int $id)
     {
-        $todoList = TodoList::where('user_id', $this->user->id)->where('id', $request->id)->first();
+        $todoList = TodoList::with('tags')->where('user_id', $this->user->id)->where('id', $id)->first();
 
         if(!$todoList){
             return Responder::send(StatusCodes::NOT_FOUND, [], 'Unable to find todo list');
@@ -86,7 +87,7 @@ class TodoListController extends Controller
 
             $todoList->tags()->sync($request->tags);
             \DB::commit();
-            
+
         } catch (\Exception $ex) {
             \DB::rollback();
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
@@ -101,15 +102,16 @@ class TodoListController extends Controller
             'user_id' => $this->user->id,
         ]);
 
-        return Responder::send(StatusCodes::CREATED, $todoList, 'Todo list created successfully');
+        return Responder::send(StatusCodes::CREATED, $todoList->load('tags'), 'Todo list created successfully');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, int $id)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make(
+            array_merge(['id' => $id], $request->all()), [
             'id' => ['required', 'integer', Rule::exists(TodoList::class, 'id')->where("user_id", $this->user->id)],
             'name' => 'required|string|max:255',
             'tags' => ['nullable', 'array', new ValidateUserAsset(Tag::class, $this->user->id)],
@@ -131,7 +133,7 @@ class TodoListController extends Controller
 
             $todoList->tags()->sync($request->tags);
             \DB::commit();
-               
+
         } catch (\Exception $ex) {
             \DB::rollback();
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
@@ -145,7 +147,7 @@ class TodoListController extends Controller
             'resource_model' => TodoList::class,
             'user_id' => $this->user->id,
         ]);
-        return Responder::send(StatusCodes::UPDATED, $todoList, 'Todo list created successfully');
+        return Responder::send(StatusCodes::UPDATED, $todoList->load('tags'), 'Todo list created successfully');
     }
 
     /**
@@ -161,6 +163,7 @@ class TodoListController extends Controller
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
+        Task::whereIn('list_id', $request->ids)->delete();
         TodoList::whereIn('id', $request->ids)->delete();
 
         // Audit

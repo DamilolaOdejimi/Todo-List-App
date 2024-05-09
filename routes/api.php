@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers
     Route::get("/todo-lists", "TodoListController@list")->name('get-todo-lists');
     Route::get("/todo-list/{id}", "TodoListController@get")->name('get-todo-lists');
     Route::post("/todo-list", "TodoListController@create")->name('create-todo-list');
-    Route::patch("/todo-list", "TodoListController@update")->name('update-todo-list');
+    Route::patch("/todo-list/{id}", "TodoListController@update")->name('update-todo-list');
     Route::delete("/todo-lists", "TodoListController@delete")->name('delete-todo-lists');
 
     Route::get("/todo-list/{listId}/tasks", "TasksController@list")->name('get-todo-list-tasks');
