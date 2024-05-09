@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Interfaces\StatusCodes;
+use App\Utils\Responder;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -24,7 +26,7 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            return Responder::send(StatusCodes::SERVER_ERROR, ['error' => $e->getMessage()], 'Something went wrong. Please try again or leave a report.');
         });
     }
 }

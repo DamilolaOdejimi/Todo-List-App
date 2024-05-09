@@ -94,4 +94,10 @@ class AuthController extends Controller
             ]
         ], 'success');
     }
+
+    public function getLogs(Request $request)
+    {
+        $logs = Auth::user()->logs()->paginate($request->query('limit') ?? null);
+        return Responder::send(StatusCodes::OK, $logs, 'success');
+    }
 }

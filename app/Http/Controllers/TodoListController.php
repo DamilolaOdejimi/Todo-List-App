@@ -28,17 +28,17 @@ class TodoListController extends Controller
     {
         $todoLists = TodoList::where('user_id', $this->user->id);
 
-        if(isset($request->limit) && isset($request->page)) {
-            $todoLists = $todoLists->paginate();
+        if(isset($request->limit)) {
+            $todoLists = $todoLists->paginate($request->limit ?? null);
         } else {
-            $todoLists->get();
+            $todoLists = $todoLists->get();
         }
 
         return Responder::send(StatusCodes::OK, $todoLists, 'success');
     }
 
     /**
-     * Display a listing of the resource.
+     * Get a single record of the resource.
      */
     public function get(Request $request)
     {

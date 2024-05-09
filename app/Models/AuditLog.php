@@ -32,6 +32,8 @@ class AuditLog extends Model
     protected $casts = [
         'created_at' => 'timestamp',
     ];
+    
+    public $timestamps = false;
 
     /**
      * Get the prunable model query.

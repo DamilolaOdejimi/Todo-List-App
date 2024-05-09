@@ -11,12 +11,11 @@ use App\Models\AuditLog;
 function logAction(array $actionArray): bool
 {
     $logArray = [
-        'action_type' => $actionArray['actionType'],
-        'action_id' => $actionArray['actionId'],
-        'action' => $actionArray['action'],
-        'company_id' => $actionArray['companyId'],
-        'causer_id' => $actionArray['causerId'],
-        'description' => $actionArray['description'] ?? ""
+        'log_name' => $actionArray['log_name'],
+        'description' => $actionArray['description'],
+        'resource_id' => $actionArray['resource_id'],
+        'resource_model' => $actionArray['resource_model'],
+        'user_id' => $actionArray['user_id']
     ];
     if (!is_null(AuditLog::create($logArray))) {
         return true;

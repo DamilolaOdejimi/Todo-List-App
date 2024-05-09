@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\PriorityLevelStatus;
+use App\Enums\TaskStatuses;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +18,7 @@ class Tasks extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'name',
         'description',
         'list_id',
         'due_date',
@@ -34,6 +37,8 @@ class Tasks extends Model
      */
     protected $casts = [
         'due_date' => 'datetime',
+        'priority_level' => PriorityLevelStatus::class,
+        'status' => TaskStatuses::class
     ];
 
     /**

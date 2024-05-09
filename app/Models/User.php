@@ -68,7 +68,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function todoLists(){
+    public function todoLists()
+    {
         return $this->hasMany(TodoList::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(AuditLog::class);
     }
 }
