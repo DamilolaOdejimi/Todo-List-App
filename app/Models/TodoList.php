@@ -20,7 +20,13 @@ class TodoList extends Model
         'name', 'user_id', 'unique_id'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'todo_list_tags', 'todo_list_id', 'tag_id');
     }
 }

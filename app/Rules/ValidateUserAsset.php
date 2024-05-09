@@ -22,7 +22,7 @@ class ValidateUserAsset implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (isset($value)) {
-            $data = resolve($this->model)
+            $data = app($this->model)
                 ->when(is_array($value), function($query) use ($value){
                     return $query->whereIn('id', $value);
                 })
@@ -34,9 +34,9 @@ class ValidateUserAsset implements ValidationRule
             // Check if any item from the request does not exist in the DB
             // or is invalid
             if(!empty(
-                array_diff(is_array($value) ? $value : [$value] , $data->pluck('id'))
+                array_diff(is_array($value) ? $value : [$value] , $data->pluck('id')->toArray())
             )){
-                $fail("Invalid data from $attribute was passed.");
+                $fail("Invalid data from $attribute .");
             }
         }
     }

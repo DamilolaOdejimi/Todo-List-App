@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 use App\Rules\ValidateUserAsset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\DocBlock\Tag;
+use App\Models\Tag;
 
 class TodoListController extends Controller
 {
@@ -59,17 +59,28 @@ class TodoListController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'tags' => ['nullable', 'array', new ValidateUserAsset(Tag::class, $this->user->id)],
+            'tags.*' => ['integer'],
         ]);
 
         if ($validator->fails()) {
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $todoList = TodoList::create([
-            'name' => $request->name,
-            'user_id' => $this->user->id,
-            'unique_id' => Str::uuid(),
-        ]);
+        \DB::beginTransaction();
+        try {
+            $todoList = TodoList::create([
+                'name' => $request->name,
+                'user_id' => $this->user->id,
+                'unique_id' => Str::uuid(),
+            ]);
+
+            $todoList->tags()->sync($request->tags);
+            \DB::commit();
+            
+        } catch (\Exception $ex) {
+            \DB::rollback();
+            return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
+        }
 
         // Audit
         logAction([
