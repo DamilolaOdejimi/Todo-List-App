@@ -25,6 +25,11 @@ class TodoList extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'list_id');
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'todo_list_tags', 'todo_list_id', 'tag_id');

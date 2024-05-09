@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskStatuses;
 use App\Models\TodoList;
 use App\Utils\Responder;
 use Illuminate\Support\Str;
@@ -46,6 +47,15 @@ class TodoListController extends Controller
 
         if(!$todoList){
             return Responder::send(StatusCodes::NOT_FOUND, [], 'Unable to find todo list');
+        }
+
+        $tasks = $todoList->tasks()->get();
+        $taskCount = $tasks->count();
+        if(!$taskCount){
+            $todoList->completion = "0%";
+        } else {
+            $completion = ($tasks->where('status', TaskStatuses::COMPLETED)->count() / $taskCount) * 100;
+            $todoList->completion = "$completion%";
         }
 
         return Responder::send(StatusCodes::OK, $todoList, 'success');
@@ -103,17 +113,29 @@ class TodoListController extends Controller
             'id' => ['required', 'integer', Rule::exists(TodoList::class, 'id')->where("user_id", $this->user->id)],
             'name' => 'required|string|max:255',
             'tags' => ['nullable', 'array', new ValidateUserAsset(Tag::class, $this->user->id)],
+            'tags.*' => ['integer'],
         ]);
 
         if ($validator->fails()) {
             return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
         }
 
-        $todoList = TodoList::find($request->id)->update([
-            'name' => $request->name,
-            'user_id' => $this->user->id,
-            'unique_id' => Str::uuid(),
-        ]);
+        \DB::beginTransaction();
+        try {
+            $todoList = TodoList::find($request->id);
+            $todoList->update([
+                'name' => $request->name,
+                'user_id' => $this->user->id,
+                'unique_id' => Str::uuid(),
+            ]);
+
+            $todoList->tags()->sync($request->tags);
+            \DB::commit();
+               
+        } catch (\Exception $ex) {
+            \DB::rollback();
+            return Responder::send(StatusCodes::VALIDATION, $validator->errors(), 'Validation error');
+        }
 
         // Audit
         logAction([

@@ -35,8 +35,6 @@ Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers
     Route::post("/todo-list", "TodoListController@create")->name('create-todo-list');
     Route::patch("/todo-list", "TodoListController@update")->name('update-todo-list');
     Route::delete("/todo-lists", "TodoListController@delete")->name('delete-todo-lists');
-    Route::delete("/todo-list/completion", "TodoListController@getCompletion")->name('get-todo-list-completion');
-    Route::delete("/todo-list/link-tags", "TodoListController@linkTags")->name('link-todo-list-tags');
 
     Route::get("/todo-list/{listId}/tasks", "TasksController@list")->name('get-todo-list-tasks');
     Route::get("/task/{taskId}", "TasksController@get")->name('get-todo-list-task');

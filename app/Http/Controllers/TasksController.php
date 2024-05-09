@@ -105,7 +105,8 @@ class TasksController extends Controller
      */
     public function update(Request $request, int $taskId)
     {
-        $validator = Validator::make(['task_id' => $taskId], [
+        $validator = Validator::make(
+            array_merge(['task_id' => $taskId], $request->all()), [
             'task_id' => ['required', 'integer', 'exists:tasks,id'],
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
@@ -122,7 +123,7 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
 
-        $task = $task->update([
+        $task->update([
             'name' => $request->name,
             'description' => $request->description,
             'due_date' => $request->due_date,
@@ -198,14 +199,14 @@ class TasksController extends Controller
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
 
-        $task = $task->update([
+        $task->update([
             'status' => $request->status,
         ]);
 
         // Audit
         logAction([
             'log_name' => 'The status of a task was updated',
-            'description' => 'Task status was updated by ' . $this->user->first_name . " " . $this->user->last_name,
+            'description' => 'Task status was updated by ' . $this->user->first_name . " " . $this->user->last_name . "to {$request->status}",
             'resource_id' => $task->id,
             'resource_model' => Task::class,
             'user_id' => $this->user->id,
