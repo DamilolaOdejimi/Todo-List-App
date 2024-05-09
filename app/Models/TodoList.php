@@ -17,7 +17,10 @@ class TodoList extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'user_id',
+        'name', 'user_id', 'unique_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

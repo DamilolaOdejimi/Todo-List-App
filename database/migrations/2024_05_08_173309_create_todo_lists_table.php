@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('todo_lists', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->uuid('unique_id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')
                 ->constrained()->cascadeOnUpdate()->cascadeOnDelete();

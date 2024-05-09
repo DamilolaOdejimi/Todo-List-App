@@ -13,6 +13,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         Sanctum::ignoreMigrations();
+
+        require_once base_path() . '/app/Helpers/utils.php';
     }
 
     /**

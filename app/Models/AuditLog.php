@@ -21,6 +21,7 @@ class AuditLog extends Model
         'description',
         'resource_id',
         'resource_model',
+        'user_id',
     ];
 
     /**

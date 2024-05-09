@@ -17,14 +17,21 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+});
 
+Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers'], function(){
+    Route::get("/todo-lists", "TodoListController@list")->name('get-todo-lists');
+    Route::get("/todo-list/{id}", "TodoListController@get")->name('get-todo-lists');
+    Route::post("/todo-list", "TodoListController@create")->name('create-todo-list');
+    Route::patch("/todo-lists", "TodoListController@update")->name('create-todo-list');
+    Route::delete("/todo-lists", "TodoListController@delete")->name('delete-todo-lists');
 });
