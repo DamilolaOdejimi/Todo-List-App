@@ -54,7 +54,7 @@ class TasksController extends Controller
         }
 
         $task = Task::find($taskId);
-        if($task->todoList->user->id != $this->user){
+        if($task->todoList->user->id != $this->user->id){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Unable to find task');
         }
 
@@ -71,7 +71,7 @@ class TasksController extends Controller
             'list_id' => ['required', 'integer', new ValidateUserAsset(TodoList::class, $this->user->id)],
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'due_date' => ['required', 'date_format:"Y-m-d H:i:s"', 'after:' . now()],
+            'due_date' => ['required', 'date_format:"Y-m-d H:i"', 'after:' . now()],
             'priority_level' => ['nullable', Rule::in(PriorityLevelStatus::cases())],
         ]);
 
@@ -82,7 +82,7 @@ class TasksController extends Controller
         $task = Task::create([
             'name' => $request->name,
             'description' => $request->description,
-            'list_id' => $request->list_id,
+            'list_id' => $listId,
             'due_date' => $request->due_date,
             'priority_level' => $request->priority_level,
             'status' => TaskStatuses::NOT_STARTED,
@@ -109,7 +109,7 @@ class TasksController extends Controller
             'task_id' => ['required', 'integer', 'exists:tasks,id'],
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'due_date' => ['required', 'date_format:"Y-m-d H:i:s"', 'after:' . now()->toDateTimeString()],
+            'due_date' => ['required', 'date_format:"Y-m-d H:i"', 'after:' . now()->toDateTimeString()],
             'priority_level' => ['nullable', Rule::in(PriorityLevelStatus::cases())],
         ]);
 
@@ -118,7 +118,7 @@ class TasksController extends Controller
         }
 
         $task = Task::find($taskId);
-        if($task->todoList->user->id != $this->user){
+        if($task->todoList->user->id != $this->user->id){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
 
@@ -194,7 +194,7 @@ class TasksController extends Controller
         }
 
         $task = Task::find($taskId);
-        if($task->todoList->user->id != $this->user){
+        if($task->todoList->user->id != $this->user->id){
             return Responder::send(StatusCodes::FORBIDDEN, [], 'Invalid task selected');
         }
 

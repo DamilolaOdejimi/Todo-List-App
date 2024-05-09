@@ -38,15 +38,15 @@ Route::group(['middleware' => ['auth:api'], 'namespace' => 'App\Http\Controllers
     Route::delete("/todo-list/completion", "TodoListController@getCompletion")->name('get-todo-list-completion');
     Route::delete("/todo-list/link-tags", "TodoListController@linkTags")->name('link-todo-list-tags');
 
-    Route::get("/todo-list/{listId}/tasks", "TaskController@list")->name('get-todo-list-tasks');
-    Route::get("/task/{taskId}", "TaskController@get")->name('get-todo-list-task');
-    Route::post("/todo-list/{listId}/task", "TaskController@create")->name('create-todo-list-task');
-    Route::patch("/task/{taskId}", "TaskController@update")->name('update-todo-list-task');
-    Route::delete("/todo-list/{listId}/tasks", "TaskController@delete")->name('delete-todo-list-tasks');
-    Route::post("/task/{taskId}/update-status", "TaskController@updateTaskStatus")->name('delete-todo-list-tasks');
+    Route::get("/todo-list/{listId}/tasks", "TasksController@list")->name('get-todo-list-tasks');
+    Route::get("/task/{taskId}", "TasksController@get")->name('get-todo-list-task');
+    Route::post("/todo-list/{listId}/task", "TasksController@create")->name('create-todo-list-task');
+    Route::patch("/task/{taskId}", "TasksController@update")->name('update-todo-list-task');
+    Route::delete("/todo-list/{listId}/tasks", "TasksController@delete")->name('delete-todo-list-tasks');
+    Route::post("/task/{taskId}/update-status", "TasksController@updateTaskStatus")->name('delete-todo-list-tasks');
 
-    Route::get("/task-statuses", "TaskController@getTaskStatuses")->name('get-task-statuses')->withoutMiddleware('auth:api');
-    Route::get("/priority-levels", "TaskController@getPriorityLevels")->name('get-priority-levels')->withoutMiddleware('auth:api');
+    Route::get("/task-statuses", "TasksController@getTaskStatuses")->name('get-task-statuses')->withoutMiddleware('auth:api');
+    Route::get("/priority-levels", "TasksController@getPriorityLevels")->name('get-priority-levels')->withoutMiddleware('auth:api');
 
     Route::get("/tags", "TagsController@list")->name('get-tags');
     Route::post("/tag", "TagsController@create")->name('create-tag');
