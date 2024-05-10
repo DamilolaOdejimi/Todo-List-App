@@ -1,0 +1,2720 @@
+{
+	"info": {
+		"_postman_id": "d94e9b8d-b1b4-412e-beb9-1b4e0fd83376",
+		"name": "Todo List App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8902738"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johndoe@email.com\",\n    \"password\": \"passcode\",\n    \"password_confirmation\": \"passcode\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johndoe@email.com\",\n    \"password\": \"passcode\",\n    \"password_confirmation\": \"passcode\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/register",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"johndoe@email.com\",\n        \"updated_at\": \"2024-05-09T06:26:34.000000Z\",\n        \"created_at\": \"2024-05-09T06:26:34.000000Z\",\n        \"id\": 1\n    },\n    \"authorisation\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZ2lzdGVyIiwiaWF0IjoxNzE1MjM1OTk0LCJleHAiOjE3MTUyMzk1OTQsIm5iZiI6MTcxNTIzNTk5NCwianRpIjoibEJnWDVKWlkzRk16REp3NyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.z_QQa7jCWmV-1lI5mhPyHJIxP2_M6D1CFQN9pDDw1JM\",\n        \"type\": \"bearer\"\n    }\n}"
+						},
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"johndoe@email.com\",\n    \"password\": \"passcode\",\n    \"password_confirmation\": \"passcode\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/register",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 08:18:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 422,\n    \"data\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    },\n    \"message\": \"Validation error\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"johndoe@email.com\",\n    \"password\": \"passcode\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null,
+									"description": "{{auth_token}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"johndoee@email.com\",\n    \"password\": \"passcode\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 06:47:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 422,\n    \"data\": {\n        \"email\": [\n            \"The selected email is invalid.\"\n        ]\n    },\n    \"message\": \"Validation error\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"johndoe@email.com\",\n    \"password\": \"passcode\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 07:25:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",\n            \"email\": \"johndoe@email.com\",\n            \"email_verified_at\": null,\n            \"status\": true,\n            \"last_login\": \"2024-05-09T07:25:51.000000Z\",\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T06:26:34.000000Z\",\n            \"updated_at\": \"2024-05-09T07:25:51.000000Z\"\n        },\n        \"authorisation\": {\n            \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzE1MjM5NTUxLCJleHAiOjE3MTUyNDMxNTEsIm5iZiI6MTcxNTIzOTU1MSwianRpIjoiVm9DM0gxWTZGaU1KUTQ3cCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.9RN7c3PO_DV5N5xRgt-y-PfqQi9437II1AXHjrM8nLk\",\n            \"type\": \"bearer\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/logout",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:11:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [],\n    \"message\": \"Successfully logged out\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/refresh",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/refresh",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:12:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",\n            \"email\": \"johndoe@email.com\",\n            \"email_verified_at\": null,\n            \"status\": true,\n            \"last_login\": \"2024-05-09T14:11:40.000000Z\",\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:05:39.000000Z\",\n            \"updated_at\": \"2024-05-09T14:11:40.000000Z\"\n        },\n        \"authorisation\": {\n            \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZnJlc2giLCJpYXQiOjE3MTUyNjM5MDAsImV4cCI6MTcxNTI2NzUzNSwibmJmIjoxNzE1MjYzOTM1LCJqdGkiOiJYUk5zVGwwZmNmWko5WGRHIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.hlsivtQv8lewUTXjnSmCa2h0iB_49vprj9i5NxFecko\",\n            \"type\": \"bearer\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Todo Lists",
+			"item": [
+				{
+					"name": "Get Lists",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-lists",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-lists"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-lists",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-lists"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:23:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"List 1\",\n            \"unique_id\": \"14b7d981-c6ac-426f-bc50-387ce40d2e4e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"updated_at\": \"2024-05-09T14:16:25.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"List 1\",\n            \"unique_id\": \"3bc273ba-bfe7-4064-93da-a0ea4f1c691e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:17:09.000000Z\",\n            \"updated_at\": \"2024-05-09T14:17:09.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"List 1\",\n            \"unique_id\": \"4ab70aa1-003b-4818-a2b0-74ba4b8c0060\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:17:52.000000Z\",\n            \"updated_at\": \"2024-05-09T14:17:52.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"List 1\",\n            \"unique_id\": \"515f5050-6040-417a-ac6c-5b3175c7681c\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:18:35.000000Z\",\n            \"updated_at\": \"2024-05-09T14:18:35.000000Z\"\n        }\n    ],\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:46:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"New List 4\",\n        \"unique_id\": \"7bc25fc4-708a-4493-a4df-a9dfc7801141\",\n        \"user_id\": 1,\n        \"deleted_at\": null,\n        \"created_at\": \"2024-05-09T14:18:35.000000Z\",\n        \"updated_at\": \"2024-05-09T15:43:10.000000Z\",\n        \"completion\": \"0%\",\n        \"tags\": [\n            {\n                \"id\": 4,\n                \"name\": \"Scratch\",\n                \"user_id\": 1,\n                \"pivot\": {\n                    \"todo_list_id\": 4,\n                    \"tag_id\": 4\n                }\n            }\n        ]\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update List",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New List 4\",\n    \"tags\": [\n        4\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New List 4\",\n    \"tags\": [\n        4\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list/4",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list",
+										"4"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:43:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 202,\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"New List 4\",\n        \"unique_id\": \"7bc25fc4-708a-4493-a4df-a9dfc7801141\",\n        \"user_id\": 1,\n        \"deleted_at\": null,\n        \"created_at\": \"2024-05-09T14:18:35.000000Z\",\n        \"updated_at\": \"2024-05-09T15:43:10.000000Z\",\n        \"tags\": [\n            {\n                \"id\": 4,\n                \"name\": \"Scratch\",\n                \"user_id\": 1,\n                \"pivot\": {\n                    \"todo_list_id\": 4,\n                    \"tag_id\": 4\n                }\n            }\n        ]\n    },\n    \"message\": \"Todo list created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"List 6\",\n    \"tags\": [\n        4, 5\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"List 6\",\n    \"tags\": [\n        1, 2, 3\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:45:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 422,\n    \"data\": {\n        \"tags\": [\n            \"Invalid data from tags was passed.\"\n        ]\n    },\n    \"message\": \"Validation error\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"List 7\",\n    \"tags\": [\n        4, 5\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:49:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"data\": {\n        \"name\": \"List 7\",\n        \"user_id\": 1,\n        \"unique_id\": \"6ab62fa8-6b24-4e35-a685-f19537ccb34b\",\n        \"updated_at\": \"2024-05-09T15:49:40.000000Z\",\n        \"created_at\": \"2024-05-09T15:49:40.000000Z\",\n        \"id\": 6,\n        \"tags\": [\n            {\n                \"id\": 4,\n                \"name\": \"Scratch\",\n                \"user_id\": 1,\n                \"pivot\": {\n                    \"todo_list_id\": 6,\n                    \"tag_id\": 4\n                }\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Template\",\n                \"user_id\": 1,\n                \"pivot\": {\n                    \"todo_list_id\": 6,\n                    \"tag_id\": 5\n                }\n            }\n        ]\n    },\n    \"message\": \"Todo list created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-lists",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-lists"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ids\": [1, 2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-lists",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-lists"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:48:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [],\n    \"message\": \"Todo list(s) deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Get User Tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/tags",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/tags",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"tags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:58:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Notes\",\n            \"user_id\": 1\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Scratch\",\n            \"user_id\": 1\n        }\n    ],\n    \"message\": \"Tasks retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Template\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tag"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Scratch\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/tag",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"tag"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:56:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"data\": {\n        \"name\": \"Scratch\",\n        \"user_id\": 1,\n        \"id\": 2\n    },\n    \"message\": \"Todo list task created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Tags",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [3]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/tags",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Scratch\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/tag",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"tag"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 14:56:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"data\": {\n        \"name\": \"Scratch\",\n        \"user_id\": 1,\n        \"id\": 2\n    },\n    \"message\": \"Todo list task created successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "List Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list/1/tasks",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list",
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list/1/tasks",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list",
+										"1",
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:20:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Task 1 for office work\",\n            \"description\": null,\n            \"list_id\": 1,\n            \"due_date\": \"2024-06-01T09:00:00.000000Z\",\n            \"priority_level\": null,\n            \"status\": \"Not Started\",\n            \"created_at\": \"2024-05-09T15:17:01.000000Z\",\n            \"updated_at\": \"2024-05-09T15:17:01.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Task 2 for office work to increase productivity\",\n            \"description\": null,\n            \"list_id\": 1,\n            \"due_date\": \"2024-06-01T09:00:00.000000Z\",\n            \"priority_level\": null,\n            \"status\": \"Not Started\",\n            \"created_at\": \"2024-05-09T15:17:27.000000Z\",\n            \"updated_at\": \"2024-05-09T15:17:27.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Task 3 for office work to increase productivity\",\n            \"description\": null,\n            \"list_id\": 1,\n            \"due_date\": \"2024-06-01T09:00:00.000000Z\",\n            \"priority_level\": \"Low\",\n            \"status\": \"Not Started\",\n            \"created_at\": \"2024-05-09T15:17:44.000000Z\",\n            \"updated_at\": \"2024-05-09T15:17:44.000000Z\"\n        }\n    ],\n    \"message\": \"Tasks retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/task/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/task/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"task",
+										"1"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:12:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 422,\n    \"data\": {\n        \"task_id\": [\n            \"The selected task id is invalid.\"\n        ]\n    },\n    \"message\": \"Validation error\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/task/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"task",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:19:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Task 1 for office work\",\n        \"description\": null,\n        \"list_id\": 1,\n        \"due_date\": \"2024-06-01T09:00:00.000000Z\",\n        \"priority_level\": null,\n        \"status\": \"Not Started\",\n        \"created_at\": \"2024-05-09T15:17:01.000000Z\",\n        \"updated_at\": \"2024-05-09T15:17:01.000000Z\",\n        \"todo_list\": {\n            \"id\": 1,\n            \"name\": \"List 1\",\n            \"unique_id\": \"14b7d981-c6ac-426f-bc50-387ce40d2e4e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"updated_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"user\": {\n                \"id\": 1,\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@email.com\",\n                \"email_verified_at\": null,\n                \"status\": true,\n                \"last_login\": \"2024-05-09T15:13:52.000000Z\",\n                \"deleted_at\": null,\n                \"created_at\": \"2024-05-09T14:05:39.000000Z\",\n                \"updated_at\": \"2024-05-09T15:13:52.000000Z\"\n            }\n        }\n    },\n    \"message\": \"Task retrieved successfully\"\n}"
+						},
+						{
+							"name": "Get Task",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/task/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"task",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 16:27:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"New Task 3 for office work to increase productivity\",\n        \"description\": \"description\",\n        \"list_id\": 1,\n        \"due_date\": \"2024-07-01T09:00:00.000000Z\",\n        \"priority_level\": \"Medium\",\n        \"status\": \"Not Started\",\n        \"created_at\": \"2024-05-09T15:17:44.000000Z\",\n        \"updated_at\": \"2024-05-09T15:24:30.000000Z\",\n        \"todo_list\": {\n            \"id\": 1,\n            \"name\": \"List 1\",\n            \"unique_id\": \"14b7d981-c6ac-426f-bc50-387ce40d2e4e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"updated_at\": \"2024-05-09T15:48:06.000000Z\",\n            \"user\": {\n                \"id\": 1,\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@email.com\",\n                \"email_verified_at\": null,\n                \"status\": true,\n                \"last_login\": \"2024-05-09T16:27:04.000000Z\",\n                \"deleted_at\": null,\n                \"created_at\": \"2024-05-09T14:05:39.000000Z\",\n                \"updated_at\": \"2024-05-09T16:27:04.000000Z\"\n            }\n        }\n    },\n    \"message\": \"Task retrieved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Task 3 for office work to increase productivity\",\n    \"description\": null,\n    \"due_date\": \"2024-06-01 09:00\",\n    \"priority_level\": \"Low\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list/1/task",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list",
+								"1",
+								"task"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Task 3 for office work to increase productivity\",\n    \"description\": null,\n    \"due_date\": \"2024-06-01 09:00\",\n    \"priority_level\": \"Low\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list/1/task",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list",
+										"1",
+										"task"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 15:17:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"data\": {\n        \"name\": \"Task 3 for office work to increase productivity\",\n        \"description\": null,\n        \"list_id\": 1,\n        \"due_date\": \"2024-06-01T09:00:00.000000Z\",\n        \"priority_level\": \"Low\",\n        \"status\": \"Not Started\",\n        \"updated_at\": \"2024-05-09T15:17:44.000000Z\",\n        \"created_at\": \"2024-05-09T15:17:44.000000Z\",\n        \"id\": 3\n    },\n    \"message\": \"Todo list task created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Task 3 for office work to increase productivity\",\n    \"description\": \"description\",\n    \"due_date\": \"2024-07-01 09:00\",\n    \"priority_level\": \"Medium\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/task/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New Task 3 for office work to increase productivity\",\n    \"description\": \"description\",\n    \"due_date\": \"2024-07-01 09:00\",\n    \"priority_level\": \"Medium\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/task/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"task",
+										"3"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 16:32:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 202,\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"New Task 3 for office work to increase productivity\",\n        \"description\": \"description\",\n        \"list_id\": 1,\n        \"due_date\": \"2024-07-01T09:00:00.000000Z\",\n        \"priority_level\": \"Medium\",\n        \"status\": \"Not Started\",\n        \"created_at\": \"2024-05-09T15:17:44.000000Z\",\n        \"updated_at\": \"2024-05-09T15:24:30.000000Z\",\n        \"todo_list\": {\n            \"id\": 1,\n            \"name\": \"List 1\",\n            \"unique_id\": \"14b7d981-c6ac-426f-bc50-387ce40d2e4e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"updated_at\": \"2024-05-09T15:48:06.000000Z\",\n            \"user\": {\n                \"id\": 1,\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@email.com\",\n                \"email_verified_at\": null,\n                \"status\": true,\n                \"last_login\": \"2024-05-09T16:27:04.000000Z\",\n                \"deleted_at\": null,\n                \"created_at\": \"2024-05-09T14:05:39.000000Z\",\n                \"updated_at\": \"2024-05-09T16:27:04.000000Z\"\n            }\n        }\n    },\n    \"message\": \"Todo list task updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/todo-list/1/tasks",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"todo-list",
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ids\": [1, 2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/todo-list/1/tasks",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"todo-list",
+										"1",
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 16:34:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": [],\n    \"message\": \"Todo list task(s) deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Task Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"Completed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/task/3/update-status",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"3",
+								"update-status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"Completed\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/task/3/update-status",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"task",
+										"3",
+										"update-status"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 09 May 2024 16:39:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 202,\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"New Task 3 for office work to increase productivity\",\n        \"description\": \"description\",\n        \"list_id\": 1,\n        \"due_date\": \"2024-07-01T09:00:00.000000Z\",\n        \"priority_level\": \"Medium\",\n        \"status\": \"Completed\",\n        \"created_at\": \"2024-05-09T15:17:44.000000Z\",\n        \"updated_at\": \"2024-05-09T16:39:24.000000Z\",\n        \"todo_list\": {\n            \"id\": 1,\n            \"name\": \"List 1\",\n            \"unique_id\": \"14b7d981-c6ac-426f-bc50-387ce40d2e4e\",\n            \"user_id\": 1,\n            \"deleted_at\": null,\n            \"created_at\": \"2024-05-09T14:16:25.000000Z\",\n            \"updated_at\": \"2024-05-09T15:48:06.000000Z\",\n            \"user\": {\n                \"id\": 1,\n                \"first_name\": \"John\",\n                \"last_name\": \"Doe\",\n                \"email\": \"johndoe@email.com\",\n                \"email_verified_at\": null,\n                \"status\": true,\n                \"last_login\": \"2024-05-09T16:27:04.000000Z\",\n                \"deleted_at\": null,\n                \"created_at\": \"2024-05-09T14:05:39.000000Z\",\n                \"updated_at\": \"2024-05-09T16:27:04.000000Z\"\n            }\n        }\n    },\n    \"message\": \"Todo list task status updated successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Audit Log",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/audit-logs?limit=10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"audit-logs"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/audit-logs?limit=10",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"audit-logs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.27"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 May 2024 15:09:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"log_name\": \"Todo list created\",\n            \"description\": \"A new Todo list created by John Doe\",\n            \"resource_id\": null,\n            \"resource_model\": null,\n            \"user_id\": 1,\n            \"created_at\": 1715267915\n        },\n        {\n            \"id\": 2,\n            \"log_name\": \"A task was created\",\n            \"description\": \"A new Todo list task was created by John Doe\",\n            \"resource_id\": 2,\n            \"resource_model\": \"App\\\\Models\\\\Tasks\",\n            \"user_id\": 1,\n            \"created_at\": 1715270193\n        },\n        {\n            \"id\": 3,\n            \"log_name\": \"A task was created\",\n            \"description\": \"A new Todo list task was created by John Doe\",\n            \"resource_id\": 3,\n            \"resource_model\": \"App\\\\Models\\\\Tag\",\n            \"user_id\": 1,\n            \"created_at\": 1715270693\n        },\n        {\n            \"id\": 4,\n            \"log_name\": \"Tags deleted\",\n            \"description\": \"Tags deleted by John Doe\",\n            \"resource_id\": null,\n            \"resource_model\": \"App\\\\Models\\\\Tag\",\n            \"user_id\": 1,\n            \"created_at\": 1715270810\n        }\n    ],\n    \"meta\": {\n        \"current_page\": 1,\n        \"first_page_url\": \"http://127.0.0.1:8000/api/audit-logs?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://127.0.0.1:8000/api/audit-logs?page=1\",\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http://127.0.0.1:8000/api/audit-logs?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": null,\n                \"label\": \"Next &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"next_page_url\": null,\n        \"path\": \"http://127.0.0.1:8000/api/audit-logs\",\n        \"per_page\": 10,\n        \"prev_page_url\": null,\n        \"to\": 4,\n        \"total\": 4\n    },\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Task Statuses",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/task-statuses",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task-statuses"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/task-statuses",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task-statuses"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.27"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 May 2024 15:08:22 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        \"Not Started\",\n        \"In Progress\",\n        \"Completed\"\n    ],\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Priority Levels",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/priority-levels",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"priority-levels"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/priority-levels",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"priority-levels"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.27"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 09 May 2024 15:09:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        \"Low\",\n        \"Medium\",\n        \"High\"\n    ],\n    \"message\": \"Success\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzE1MjcyMDI0LCJleHAiOjE3MTUyNzU2MjQsIm5iZiI6MTcxNTI3MjAyNCwianRpIjoiWGZ4aFJDeElYUzlxQmxzbSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.XEWdQkGePQPi0q2VoRldmIo-niqi6k-nsl6S9ch0YCw"
+		}
+	]
+}
