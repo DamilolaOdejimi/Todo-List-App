@@ -70,7 +70,7 @@ test('get single todo-list api retrieves data successfully', function () {
         ->toHaveKey('completion', "$completion%")
         ->toHaveKey('user_id', $this->actor->id);
 
-})->skip();
+});
 
 
 test('get single todo-list api returns not found response', function () {
@@ -107,7 +107,7 @@ test('create todo-list api returns validation error response', function () {
 });
 
 
-test('update todo-list api creates data successfully', function (array $payload) {
+test('update todo-list api updates data successfully', function (array $payload) {
     $list = $this->actor->todoLists()->first();
 
     $response = $this->actingAs($this->actor)
