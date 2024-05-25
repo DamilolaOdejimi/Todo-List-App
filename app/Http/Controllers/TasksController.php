@@ -143,10 +143,11 @@ class TasksController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete task from DB.
      */
     public function delete(Request $request, int $listId)
     {
+        // Validate IDs to make sure all task IDs are linked to the right list ID
         $validator = Validator::make(
             array_merge(['list_id' => $listId], $request->all()), [
             'list_id' => ['required', 'integer', new ValidateUserAsset(TodoList::class, $this->user->id)],

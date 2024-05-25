@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use App\Models\Task;
 use App\Utils\Responder;
 use Illuminate\Http\Request;
 use App\Interfaces\StatusCodes;

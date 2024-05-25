@@ -22,14 +22,14 @@ class ValidateUserAsset implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (isset($value)) {
-            $data = app($this->model)
+            $data = app($this->model)->where('user_id', $this->userId)
                 ->when(is_array($value), function($query) use ($value){
                     return $query->whereIn('id', $value);
                 })
                 ->when(!is_array($value), function($query) use ($value){
                     return $query->where('id', $value);
                 })
-                ->where('user_id', $this->userId)->get();
+                ->get();
 
             // Check if any item from the request does not exist in the DB
             // or is invalid

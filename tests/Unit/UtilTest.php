@@ -13,4 +13,8 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    /**
+     * test log action in helper util
+     */
 }

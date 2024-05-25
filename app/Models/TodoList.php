@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\Builder;
 
 class TodoList extends Model
 {
@@ -33,5 +34,10 @@ class TodoList extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'todo_list_tags', 'todo_list_id', 'tag_id');
+    }
+
+    public function prunable(): Builder
+    {
+        return static::where('created_at', '<=', now()->subMonth());
     }
 }
